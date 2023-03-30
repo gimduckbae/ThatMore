@@ -47,7 +47,11 @@ function search_button_handler() {
         return;
     }
 
+    // 기존에 있던 동영상 리스트 삭제
     $("#accordionFlushExample").empty();
+
+    // 검색버튼 누르면 메인화면 That More + 숨기기
+    $(".main-box").css("display", "none");
 
     // 비디오URL로 채널ID찾기
     const channelId_XHR = get_channel_id_from_video_id(videoId);
@@ -149,7 +153,7 @@ function get_comment_threads_from_video_id(videoId) {
     const commentThreads_XHR = $.ajax({
         type: "GET",
         dataType: "JSON",
-        url: `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&textFormat=plainText&order=relevance&videoId=${videoId}&key=${g_apikey}`,
+        url: `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&textFormat=plainText&order=relevance&maxResults=100&videoId=${videoId}&key=${g_apikey}`,
         async: false,
         contentType: "application/json",
     });

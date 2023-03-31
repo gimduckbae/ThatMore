@@ -12,6 +12,8 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin: 0 auto;
+    width: 80%;
 }
 
 .accordion-collapse {
@@ -35,12 +37,12 @@ body {
 }
 
 #page-title {
-    font-size: 14vmin;
+    font-size: 12vmin;
     transform: rotate(0.04deg);
 }
 
 #page-comment {
-    font-size: 2vmin;
+    font-size: 3vmin;
     transform: rotate(0.04deg);
 }
 
@@ -55,4 +57,35 @@ body {
 #accordionFlushExample {
     padding-top: 10vh;
     padding-bottom: 10vh;
+}
+
+.btn_scroll {
+    width: 80px;
+    position: fixed;
+    top: 10vh;
+    right: 3vw;
+    z-index: 999;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.btn-dark {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #212529;
+    --bs-btn-border-color: #212529;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #212529;
+    --bs-btn-hover-border-color: #212529;
+    --bs-btn-focus-shadow-rgb: 66, 70, 73;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #424649;
+    --bs-btn-active-border-color: #373b3e;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #212529;
+    --bs-btn-disabled-border-color: #212529;
 }

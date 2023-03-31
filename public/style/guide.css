@@ -1,0 +1,106 @@
+body {
+    background-color: #112D4E;
+}
+
+.navbar {
+    background-color: #3F72AF;
+    padding-top: 16px;
+}
+
+.my_card {
+    margin: 0 auto;
+    margin-bottom: 10vh;
+    width: 80vw;
+    background-color: #3F72AF;
+}
+
+.mobile {
+    width: 80vw;
+    height: 170vw;
+}
+
+.my_font {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    color: #fff;
+}
+
+.g_title {
+    text-align: center;
+    font-size: 5vmin;
+    transform: rotate(0.04deg);
+}
+
+.g_text {
+    text-align: center;
+    margin: 0;
+    font-size: 2vmin;
+    transform: rotate(0.04deg);
+}
+
+.g_title_mobile {
+    text-align: center;
+    font-size: 6vmin;
+    transform: rotate(0.04deg);
+}
+
+.g_text_mobile {
+    text-align: center;
+    margin: 0;
+    font-size: 4vmin;
+    transform: rotate(0.04deg);
+}
+
+.card-body {
+    padding: 4px 4px;
+}
+
+.title {
+    margin: 0 auto;
+    margin-left: 5vmin;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+}
+
+.page_title {
+    font-size: 5vmin;
+    font-weight: lighter;
+    color: #fff;
+    text-align: left;
+    transform: rotate(0.04deg);
+}
+
+.last_text {
+    font-weight: bold;
+}
+
+.btn_scroll {
+    width: 80px;
+    position: fixed;
+    top: 10vh;
+    right: 3vw;
+    z-index: 999;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.btn-dark {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #212529;
+    --bs-btn-border-color: #212529;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #212529;
+    --bs-btn-hover-border-color: #212529;
+    --bs-btn-focus-shadow-rgb: 66, 70, 73;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #424649;
+    --bs-btn-active-border-color: #373b3e;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #212529;
+    --bs-btn-disabled-border-color: #212529;
+}

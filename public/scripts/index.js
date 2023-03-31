@@ -5,6 +5,17 @@ $(document).ready(function () {
 
     // accordion-button 버튼 핸들러
     $("#accordionFlushExample").on("click", ".accordion-button", accordion_button_handler);
+
+    // Top 스크롤 버튼
+    $("#btn_top").click(function () {
+        document.querySelector('body').scrollIntoView({ behavior: 'smooth' });
+        $('body').focus();
+    });
+
+    // Down 스크롤 버튼
+    $("#btn_down").click(function () {
+        document.querySelector('footer').scrollIntoView({ behavior: 'smooth' });
+    });
 });
 
 

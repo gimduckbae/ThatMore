@@ -8,13 +8,16 @@ $(document).ready(function () {
 
     // Top 스크롤 버튼
     $("#btn_top").click(function () {
-        document.querySelector('body').scrollIntoView({ behavior: 'smooth' });
-        $('body').focus();
+        $('html, body').animate({
+            scrollTop: $("body").offset().top
+        }, 500);
     });
 
     // Down 스크롤 버튼
     $("#btn_down").click(function () {
-        document.querySelector('footer').scrollIntoView({ behavior: 'smooth' });
+        $('html, body').animate({
+            scrollTop: $("footer").offset().top
+        }, 500);
     });
 });
 
@@ -39,11 +42,13 @@ function accordion_button_handler() {
             add_comment_to_html(jsonData, $selectEle);
 
         }).fail(function (response) {
-            swal("일시적인 오류가 발생했어요.", "잠시 후 다시 이용해주세요.", "error");
+            Swal.fire({
+                icon: 'error',
+                title: '일시적인 오류가 발생했어요.',
+                text: '잠시 후 다시 이용해주세요.',
+            })
             // console.log("댓글쓰레드 요청 실패");
-            // console.log(response);
         }).done(function (data) {
-            // console.log(data);
         });
     }
 }
@@ -54,7 +59,11 @@ function search_button_handler() {
     const videoURL = $("#search-url-input").val();
     const videoId = get_video_id(videoURL);
     if (videoId == "") {
-        swal("링크가 잘못 됐어요!", "동영상 URL을 다시 확인해주세요.", "error");
+        Swal.fire({
+            icon: 'error',
+            title: '링크가 잘못 됐어요!',
+            text: '동영상 URL을 다시 확인해주세요.',
+        })
         return;
     }
 
@@ -76,9 +85,12 @@ function search_button_handler() {
         const video_list_XHR = get_video_list_from_playlist_id(playlistId);
         return video_list_XHR;
     }).fail(function (response) {
-        swal("일시적인 오류가 발생했어요.", "잠시 후 다시 이용해주세요.", "error");
+        Swal.fire({
+            icon: 'error',
+            title: '일시적인 오류가 발생했어요.',
+            text: '잠시 후 다시 이용해주세요.',
+        })
         // console.log("채널ID 요청 실패");
-        // console.log(response);
     }).done(function (data) {
         add_video_list_to_html(data);
     });
@@ -168,8 +180,8 @@ function get_comment_threads_from_video_id(videoId) {
         async: false,
         contentType: "application/json",
     });
-    console.log("댓글 요청 성공");
-    console.log(commentThreads_XHR);
+    // console.log("댓글 요청 성공");
+    // console.log(commentThreads_XHR);
     return commentThreads_XHR;
 }
 

@@ -89,10 +89,12 @@ $(document).ready(function () {
         socket.emit('chat message', msg);
         e.target.m.value = '';
         chatBox.appendChild(makeMessage(msg, false));
+        chatBox.scrollTop = chatBox.scrollHeight;
     })
 
     socket.on('chat message', (message) => {
         chatBox.appendChild(makeMessage(message, true));
+        chatBox.scrollTop = chatBox.scrollHeight;
     })
 
     const makeMessage = (message, isOthers) => {

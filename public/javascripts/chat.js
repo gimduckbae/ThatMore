@@ -3,7 +3,7 @@ $(document).ready(function () {
     const chatForm = document.getElementById('chat-form');
     const chatBox = document.getElementById('messages');
 
-
+    let last_other_name = '';
     let name = '';
     let g_input_error_count = 0;
     input_name();
@@ -86,6 +86,7 @@ $(document).ready(function () {
             'name': name,
             'text': message
         };
+        last_other_name = msg.name;
         socket.emit('chat message', msg);
         e.target.m.value = '';
         chatBox.appendChild(makeMessage(msg, false));

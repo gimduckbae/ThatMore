@@ -1,7 +1,27 @@
 const g_apikey = "AIzaSyCAVuBoT61qOyselZeEQ6B3cDU-zJIKBPc"; // 우리집 가보
 $(document).ready(function () {
     // 검색버튼
-    $("#search-button").click(search_button_handler);
+    $("#search-button").click(function () {
+        $("#accordionFlushExample").empty(); // 기존에 있던 동영상 리스트 삭제
+        $('.spinner-box').css("display", "flex"); // 검색버튼 누르면 스피너 표시
+        $('.main-box').css("display", "none"); // 검색버튼 누르면 That More + 숨기기
+        // css 대기
+        setTimeout(function () {
+            search_button_handler();
+        }, 1);
+    });
+
+    $("#search-url-input").keypress(function (e) {
+        if (e.which == 13) {
+            $("#accordionFlushExample").empty(); // 기존에 있던 동영상 리스트 삭제
+            $('.spinner-box').css("display", "flex"); // 검색버튼 누르면 스피너 표시
+            $('.main-box').css("display", "none"); // 검색버튼 누르면 That More + 숨기기
+            // css 대기
+            setTimeout(function () {
+                search_button_handler();
+            }, 1);
+        }
+    });
 
     // accordion-button 버튼 핸들러
     $("#accordionFlushExample").on("click", ".accordion-button", accordion_button_handler);
@@ -19,6 +39,17 @@ $(document).ready(function () {
             scrollTop: $("footer").offset().top
         }, 500);
     });
+
+    // 검색옵션 버튼
+    $('#search_type_1').click(function () {
+        $('#search-url-input').attr('placeholder', '영상 URL을 입력해주세요');
+        $('#search_btn_drop').text('영상검색');
+    });
+
+    $('#search_type_2').click(function () {
+        $('#search-url-input').attr('placeholder', '채널 이름을 입력해주세요');
+        $('#search_btn_drop').text('채널검색');
+    });
 });
 
 
@@ -35,7 +66,6 @@ function accordion_button_handler() {
 
         // 댓글 테이블 추가할 ele 위치
         const $selectEle = $(this).parent().parent().find('.accordion-body');
-        console.log($selectEle);
 
         commentThreads_XHR.then(function (jsonData) {
             // 댓글 테이블 추가하는 반복문 함수 넣을자리
@@ -56,46 +86,77 @@ function accordion_button_handler() {
 
 /** 검색버튼 이벤트 핸들러 */
 function search_button_handler() {
-    const videoURL = $("#search-url-input").val();
-    const videoId = get_video_id(videoURL);
-    if (videoId == "") {
-        Swal.fire({
-            icon: 'error',
-            title: '링크가 잘못 됐어요!',
-            text: '동영상 URL을 다시 확인해주세요.',
-        })
-        return;
+    const inputElement = $("#search-url-input");
+    const inputString = inputElement.val();
+    const btnString = $('#search_btn_drop').text();
+
+
+    if (btnString == '영상검색') {
+        const videoId = get_video_id(inputString);
+
+        if (videoId == "") {
+            Swal.fire({
+                icon: 'error',
+                title: '링크가 잘못 됐어요!',
+                text: '동영상 URL을 다시 확인해주세요.',
+            })
+            $('.main-box').css("display", "flex"); // 메인화면 That More + 표시
+            $('.spinner-box').css("display", "none");  // 스피너 숨기기
+            return;
+        }
+
+        // 비디오URL로 채널ID찾기
+        const channelId_XHR = get_channel_id_from_video_id(videoId);
+
+        channelId_XHR.then(function (jsonData) {
+            const channelTitle = jsonData.items[0].snippet.channelTitle;
+            const channelId = jsonData.items[0].snippet.channelId;
+            const playlistId = channelId.replace("UC", "UU");
+
+            // 채널ID의 업로드된 비디오리스트ID로 동영상리스트 추출
+            const video_list_XHR = get_video_list_from_playlist_id(playlistId);
+            return video_list_XHR;
+        }).fail(function (response) {
+            Swal.fire({
+                icon: 'error',
+                title: '일시적인 오류가 발생했어요.',
+                text: '잠시 후 다시 이용해주세요.',
+            })
+        }).done(function (data) {
+            add_video_list_to_html(data);
+        });
+
+    } else if (btnString == '채널검색') {
+        try {
+            const channelName = inputString;
+            const channelId = get_channel_id_from_name(channelName).responseJSON.channel_id;
+            const playlistId = channelId.replace("UC", "UU");
+            console.log(playlistId);
+            const video_list_XHR = get_video_list_from_playlist_id(playlistId).responseJSON;
+            add_video_list_to_html(video_list_XHR);
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: '일시적인 오류가 발생했어요.',
+                text: '잠시 후 다시 이용해주세요.',
+            })
+        }
     }
-
-    // 기존에 있던 동영상 리스트 삭제
-    $("#accordionFlushExample").empty();
-
-    // 검색버튼 누르면 메인화면 That More + 숨기기
-    $(".main-box").css("display", "none");
-
-    // 비디오URL로 채널ID찾기
-    const channelId_XHR = get_channel_id_from_video_id(videoId);
-
-    channelId_XHR.then(function (jsonData) {
-        const channelTitle = jsonData.items[0].snippet.channelTitle;
-        const channelId = jsonData.items[0].snippet.channelId;
-        const playlistId = channelId.replace("UC", "UU");
-
-        // 비디오리스트ID로 동영상리스트 추출
-        const video_list_XHR = get_video_list_from_playlist_id(playlistId);
-        return video_list_XHR;
-    }).fail(function (response) {
-        Swal.fire({
-            icon: 'error',
-            title: '일시적인 오류가 발생했어요.',
-            text: '잠시 후 다시 이용해주세요.',
-        })
-        // console.log("채널ID 요청 실패");
-    }).done(function (data) {
-        add_video_list_to_html(data);
-    });
+    $('.spinner-box').css("display", "none"); // 스피너 숨기기
 }
 
+
+/** 이름으로 채널ID 추출하는 함수 */
+function get_channel_id_from_name(searchName) {
+    const jqXHR = $.ajax({
+        type: "GET",
+        dataType: "JSON",
+        url: `${window.location.href}api/getchannel/${searchName}`,
+        async: false,
+        contentType: "application/json",
+    });
+    return jqXHR;
+}
 
 
 /**입력받은 동영상URL 가공하는 함수*/
@@ -139,6 +200,7 @@ function get_video_list_from_playlist_id(playlistId) {
 
 /**동영상리스트를 html에 추가하기 */
 function add_video_list_to_html(video_list_XHR) {
+    console.log(video_list_XHR);
     const video_list = video_list_XHR.items;
     for (let i = 0; i < video_list.length; i++) {
         const videoId = video_list[i].contentDetails.videoId;

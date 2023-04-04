@@ -7,15 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="stylesheets/index.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.js"
         integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.4.5/mobile-detect.min.js"></script>
-    <link rel="stylesheet" href="stylesheets/index.css">
     <script src="javascripts/index.js"></script>
 </head>
 
@@ -51,7 +51,8 @@
         <div class="container-fluid main-box">
             <div class="row">
                 <div class="col-12">
-                    <h1 id="page-title" class="my_font">That&nbsp;More&nbsp;<span class="my_font text-black-50">+</span></h1>
+                    <h1 id="page-title" class="my_font">That&nbsp;More&nbsp;<span class="my_font text-black-50">+</span>
+                    </h1>
                 </div>
             </div>
             <div class="row">
@@ -61,11 +62,25 @@
             </div>
         </div>
 
+        <div class="container-fluid spinner-box">
+            <div class="spinner-border text-light" style="width: 10rem; height: 10rem; --bs-spinner-border-width: 1em;"
+                role="status">
+            </div>
+        </div>
+
 
         <div id="buttons">
-            <div class="input-group mb-3 row">
-                <input type="text" id="search-url-input" placeholder="동영상URL 입력" class="form-control col"
-                    value="" aria-label="동영상URL 입력" aria-describedby="button-addon2">
+            <div class="input-group mb-3">
+                <button class="btn dropdown-toggle btn-primary" id="search_btn_drop" type="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">채널검색</button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" id="search_type_1">영상 URL로 검색</a></li>
+                    <li><a class="dropdown-item" id="search_type_2">채널 이름으로 검색</a></li>
+                    <!-- <li><a class="dropdown-item">영상 제목으로 검색</a></li> -->
+                </ul>
+
+                <input type="text" id="search-url-input" placeholder="채널 이름을 입력해주세요" class="form-control col" value=""
+                    aria-label="" aria-describedby="button-addon2">
                 <button type="button" id="search-button" class="btn btn-primary col-auto">검색</button>
             </div>
         </div>

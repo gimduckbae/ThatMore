@@ -31,6 +31,15 @@ body {
     flex-direction: column;
 }
 
+.spinner-box {
+    width: 100%;
+    height: 60vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .my_font {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;

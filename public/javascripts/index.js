@@ -2,10 +2,11 @@ const g_apikey = "AIzaSyCAVuBoT61qOyselZeEQ6B3cDU-zJIKBPc"; // 우리집 가보
 $(document).ready(function () {
     // 모바일 체크
     const md = new MobileDetect(navigator.userAgent);
+
     if (md.mobile() == null) {
         // PC 환경
     } else {
-        // 모바일 환경
+        // 모바일 환경 css
         $('#search-url-input').css("font-size", "3.5vw");
         $('#search-button').css("font-size", "3.5vw");
         $('#search_btn_drop').css("width", "20vw");
@@ -13,6 +14,7 @@ $(document).ready(function () {
         $('#search_btn_drop').css("padding", "0");
         $('.footer-text').find('span').css("margin-top", "16px");
     }
+
 
     // 검색버튼
     $("#search-button").click(function () {
@@ -22,9 +24,11 @@ $(document).ready(function () {
         // css 대기
         setTimeout(function () {
             search_button_handler();
-        }, 1);
+        }, 10);
     });
 
+
+    // 검색버튼 키입력 핸들러
     $("#search-url-input").keypress(function (e) {
         if (e.which == 13) {
             $("#accordionFlushExample").empty(); // 기존에 있던 동영상 리스트 삭제
@@ -33,17 +37,20 @@ $(document).ready(function () {
             // css 대기
             setTimeout(function () {
                 search_button_handler();
-            }, 1);
+            }, 10);
         }
     });
 
-    // Swal 로 팝업창 띄우기 수정중-----------------------------------
-    // $("#search-url-input").focus(function () {
-    //     popup_swal();
-    // });
+
+    // Swal 로 팝업창 띄우기
+    $("#search-url-input").focus(function () {
+        popup_swal();
+    });
+
 
     // accordion-button 버튼 핸들러
     $("#accordionFlushExample").on("click", ".accordion-button", accordion_button_handler);
+
 
     // Top 스크롤 버튼
     $("#btn_top").click(function () {
@@ -52,6 +59,7 @@ $(document).ready(function () {
         }, 500);
     });
 
+
     // Down 스크롤 버튼
     $("#btn_down").click(function () {
         $('html, body').animate({
@@ -59,42 +67,75 @@ $(document).ready(function () {
         }, 500);
     });
 
-    // 검색옵션 버튼
+
+    // 검색옵션 버튼 - 영상URL
     $('#search_type_1').click(function () {
         $('#search-url-input').attr('placeholder', '영상 URL 입력');
         $('#search_btn_drop').text('영상URL');
     });
 
+
+    // 검색옵션 버튼 - 채널명
     $('#search_type_2').click(function () {
-        $('#search-url-input').attr('placeholder', '예시) 조코딩');
+        $('#search-url-input').attr('placeholder', '채널명');
         $('#search_btn_drop').text('채널명');
+    });
+
+
+    // 검색 input 포커스 핸들러
+    $("#search-url-input").focus(function () {
+        if ($('#search_btn_drop').text() == '채널명') {
+            $('#search-url-input').attr('placeholder', `' 조코딩' 검색!`);
+        }
+    });
+
+
+    // 검색 input 블러 핸들러 (아웃포커스)
+    $("#search-url-input").blur(function () {
+        if ($('#search_btn_drop').text() == '채널명') {
+            $('#search-url-input').attr('placeholder', '채널명 입력');
+        }
     });
 });
 
+
+
+// 팝업창 닫기 (쿠키 저장)
+function close_swal(bool) {
+    if (bool) {
+        const date = new Date();
+        date.setHours(date.getHours() + 24);
+        document.cookie = `p_visit_check=true; expires=${date.toUTCString()}; secure}`;
+    }
+    Swal.close();
+}
+
 // 팝업창 띄우기
 function popup_swal() {
-    return;
-    $("#search-url-input").blur();
     if (popup_check() == false) {
+        $("#search-url-input").blur(); // 검색input 포커스 해제
+
+        // 검색 placeholder 변경 유사 동기처리
+        setTimeout(function () {
+            if ($('#search_btn_drop').text() == '채널명') {
+                $('#search-url-input').attr('placeholder', '채널명 입력');
+            }
+        }, 10);
+
         Swal.fire({
-            title: '댓글모아',
-            text: '혹시 몰라 가이드를 준비해 봤어요!',
-            footer: '<a href=""><strong>사용 가이드 보러가기</strong></a>',
-            icon: 'question',
-            allowOutsideClick: false,
-            showCloseButton: true,
-            showconfirmButton: false,
-            closeButtonHtml: 
-            `
-            <button class="">닫기</button>
-            <button class="">닫기</button>
-            `,
-            showCancelButton: false,
-        }).then((result) => {
-            const is_confirm = result.isConfirmed;
-            const is_cancel = result.isDismissed;
-            const is_dismiss = result.isDismissed;
-        });
+            title: '<div id="popup-title">사용법이 궁금하다면,<br><b><a href="guide.html" target="_blank">가이드</a></b>를 확인해보세요.</div>',
+            icon: 'info',
+            showConfirmButton: false,
+            html:
+                `
+                <div id="close-box">
+                    <label id="label-close-check" onclick="close_swal(true)">
+                        <input type="checkbox"  name="close_check"> 오늘 하루동안 보지 않기
+                    </label>
+                    <label id="label-close-btn" onclick="close_swal(false)"><input type="button" class="transparent" name="close_btn">×</label>
+                </div>
+                `,
+        })
     }
 }
 
@@ -106,9 +147,6 @@ function popup_check() {
     } else {
         return false;
     }
-    // const date = new Date();
-    // date.setHours(date.getHours() + 24);
-    // document.cookie = `p_visit_check=true; expires=${date.toUTCString()}; secure}`;
 }
 
 /** 아코디언 버튼 이벤트 핸들러 */
@@ -153,7 +191,7 @@ function search_button_handler() {
     const btnString = $('#search_btn_drop').text();
 
 
-    if (btnString == '영상검색') {
+    if (btnString == '영상URL') {
         const videoId = get_video_id(inputString);
 
         if (videoId == "") {
@@ -188,7 +226,7 @@ function search_button_handler() {
             add_video_list_to_html(data);
         });
 
-    } else if (btnString == '채널검색') {
+    } else if (btnString == '채널명') {
         try {
             const channelName = inputString;
             const channelId = get_channel_id_from_name(channelName).responseJSON.channel_id;
@@ -213,7 +251,7 @@ function get_channel_id_from_name(searchName) {
     const jqXHR = $.ajax({
         type: "GET",
         dataType: "JSON",
-        url: `${window.location.href}api/getchannel/${searchName}`,
+        url: `${window.location.origin}/api/getchannel/${searchName}`,
         async: false,
         contentType: "application/json",
     });

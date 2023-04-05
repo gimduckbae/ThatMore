@@ -8,7 +8,7 @@ $(document).ready(function () {
     let g_input_error_count = 0;
     input_name();
 
-
+    // 채팅 닉네임 설정
     function input_name() {
         Swal.fire({
             title: '채팅 닉네임을 정해주세요.',
@@ -40,34 +40,37 @@ $(document).ready(function () {
     }
 
 
+    // 쿠팡 광고 팝업
+    function coopang_popup() {
+        Swal.fire({
+            title: '쿠팡 방문하고 채팅하기',
+            text: '이 팝업은 쿠팡 파트너스 활동으로, 일정액의 수수료를 제공받을 수 있습니다.',
+            icon: 'warning',
+            footer: '<div style="text-align: center; font-size: 0.8em;"><strong>이 경고는 결제 유도가 아닙니다!</strong><br>클릭 한번으로 That More 운영에 큰 힘이 됩니다.</div>',
+            confirmButtonText: '까짓거 해줄게!',
+            showCancelButton: true,
+            cancelButtonText: '내가 왜 함?'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                if (coopang_check()) {
+                    return;
+                }
+                window.open('https://link.coupang.com/a/TOalj', '_blank');
+                const date = new Date();
+                date.setHours(date.getHours() + 12);
+                document.cookie = `c_visit_check=true; expires=${date.toUTCString()}; secure}`;
+            }
+        })
+    }
 
 
-
-
+    // 채팅 전송 이벤드리스너, 쿠팡 체크
     chatForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const message = e.target.m.value
 
-        if (coopang_check() == false) {
-            Swal.fire({
-                title: '쿠팡 방문하고 채팅하기',
-                text: '쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받을 수 있습니다.',
-                icon: 'warning',
-                footer: '클릭 한번으로 That More 운영에 큰 힘이 됩니다.',
-                confirmButtonText: '까짓거 해줄게!',
-                showCancelButton: true,
-                cancelButtonText: '내가 왜 함?'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    if (coopang_check()) {
-                        return;
-                    }
-                    window.open('https://link.coupang.com/a/TOalj', '_blank');
-                    const date = new Date();
-                    date.setHours(date.getHours() + 12);
-                    document.cookie = `c_visit_check=true; expires=${date.toUTCString()}; secure}`;
-                }
-            })
+        if (coopang_check() == false) { // 쿠팡 쿠키가 없으면 광고 팝업 << 따로 함수로 빼도 되는데 구찮아서 그냥 여기에
+            coopang_popup();
             return;
         }
 
@@ -93,24 +96,28 @@ $(document).ready(function () {
         chatBox.scrollTop = chatBox.scrollHeight;
     })
 
+
+    // 다른사람의 채팅 메세지 수신
     socket.on('chat message', (message) => {
         chatBox.appendChild(makeMessage(message, true));
         chatBox.scrollTop = chatBox.scrollHeight;
     })
 
+
+    // 메세지 html 생성
     const makeMessage = (message, isOthers) => {
         const mainClass = isOthers ? 'others-message-wrapper' : 'my-message-wrapper';
         const msgBox = document.createElement('div');
         msgBox.classList.add(mainClass);
 
-        if (!isOthers) {
+        if (!isOthers) { // 내 메세지면 닉네임 출력 X
             msgBox.innerHTML = `
             <div class="my-message-box">
                 <span>${message.text}</span>
             </div>
             `;
         }
-        else {
+        else { // 다른사람 메세지면 닉네임 출력 O
             msgBox.innerHTML = `
             <span class="others-nickname">${message.name}</span>
             <div class="others-message-box">
@@ -126,12 +133,13 @@ $(document).ready(function () {
     // 모바일 체크
     const md = new MobileDetect(navigator.userAgent);
     if (md.mobile() == null) {
-
+        // 모바일 채팅 전송시 스크롤 문제 있음
     }
+
 
     // 쿠팡 체크
     function coopang_check() {
-        if (document.cookie.indexOf('c_visit_check') != -1) {
+        if (document.cookie.indexOf('c_visit_check') != -1) { // 쿠키 있으면 true
             return true;
         } else {
             return false;

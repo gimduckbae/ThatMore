@@ -116,25 +116,53 @@ body {
     width: 50%;
 }
 
-.swal2-close {
-    z-index: 2;
-    align-items: center;
+#popup-title {
+    font-size: 0.7em;
+    font-weight: bold;
+    line-height: 1.5em;
+}
+
+#close-box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 6%;
+    display: flex;
     justify-content: center;
-    width: 5em;
-    height: 3em;
-    margin-top: 0;
-    margin-right: 0;
-    margin-bottom: -1.2em;
-    padding: 0;
-    overflow: hidden;
-    transition: color .1s,box-shadow .1s;
-    border: none;
-    border-radius: 5px;
-    background: rgba(0,0,0,0);
-    color: #ccc;
-    font-family: serif;
-    font-family: monospace;
-    font-size: 1em;
+    align-items: center;
     cursor: pointer;
-    justify-self: end;
+}
+
+.transparent {
+    background-color: transparent;
+    border: none;
+}
+
+#label-close-check {
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    transform: none;
+    font-size: 0.8em;
+}
+
+#label-close-btn {
+    position: absolute;
+    top: 0;
+    right: 0.5em;
+    font-size: 1.6em;
+}
+
+#label-close-btn:hover {
+    color: #f27474;
+}
+
+#label-close-btn > input {
+    position: absolute;
+    padding: 0;
+}
+
+#label-close-check:hover {
+    color: #f27474;
 }

@@ -67,6 +67,7 @@ body {
     font-size: 5vw;
     /* 모바일은 8 */
     font-weight: lighter;
+    line-height: 1.5em;
     color: #fff;
     text-align: center;
     transform: rotate(0.04deg);

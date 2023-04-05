@@ -1,5 +1,19 @@
 const g_apikey = "AIzaSyCAVuBoT61qOyselZeEQ6B3cDU-zJIKBPc"; // 우리집 가보
 $(document).ready(function () {
+    // 모바일 체크
+    const md = new MobileDetect(navigator.userAgent);
+    if (md.mobile() == null) {
+        // PC 환경
+    } else {
+        // 모바일 환경
+        $('#search-url-input').css("font-size", "3.5vw");
+        $('#search-button').css("font-size", "3.5vw");
+        $('#search_btn_drop').css("width", "20vw");
+        $('#search_btn_drop').css("font-size", "3.5vw");
+        $('#search_btn_drop').css("padding", "0");
+        $('.footer-text').find('span').css("margin-top", "16px");
+    }
+
     // 검색버튼
     $("#search-button").click(function () {
         $("#accordionFlushExample").empty(); // 기존에 있던 동영상 리스트 삭제
@@ -23,6 +37,11 @@ $(document).ready(function () {
         }
     });
 
+    // Swal 로 팝업창 띄우기 수정중-----------------------------------
+    // $("#search-url-input").focus(function () {
+    //     popup_swal();
+    // });
+
     // accordion-button 버튼 핸들러
     $("#accordionFlushExample").on("click", ".accordion-button", accordion_button_handler);
 
@@ -42,16 +61,55 @@ $(document).ready(function () {
 
     // 검색옵션 버튼
     $('#search_type_1').click(function () {
-        $('#search-url-input').attr('placeholder', '영상 URL을 입력해주세요');
-        $('#search_btn_drop').text('영상검색');
+        $('#search-url-input').attr('placeholder', '영상 URL 입력');
+        $('#search_btn_drop').text('영상URL');
     });
 
     $('#search_type_2').click(function () {
-        $('#search-url-input').attr('placeholder', '채널 이름을 입력해주세요');
-        $('#search_btn_drop').text('채널검색');
+        $('#search-url-input').attr('placeholder', '예시) 조코딩');
+        $('#search_btn_drop').text('채널명');
     });
 });
 
+// 팝업창 띄우기
+function popup_swal() {
+    return;
+    $("#search-url-input").blur();
+    if (popup_check() == false) {
+        Swal.fire({
+            title: '댓글모아',
+            text: '혹시 몰라 가이드를 준비해 봤어요!',
+            footer: '<a href=""><strong>사용 가이드 보러가기</strong></a>',
+            icon: 'question',
+            allowOutsideClick: false,
+            showCloseButton: true,
+            showconfirmButton: false,
+            closeButtonHtml: 
+            `
+            <button class="">닫기</button>
+            <button class="">닫기</button>
+            `,
+            showCancelButton: false,
+        }).then((result) => {
+            const is_confirm = result.isConfirmed;
+            const is_cancel = result.isDismissed;
+            const is_dismiss = result.isDismissed;
+        });
+    }
+}
+
+
+// 팝업창 체크
+function popup_check() {
+    if (document.cookie.indexOf('p_visit_check') != -1) {
+        return true;
+    } else {
+        return false;
+    }
+    // const date = new Date();
+    // date.setHours(date.getHours() + 24);
+    // document.cookie = `p_visit_check=true; expires=${date.toUTCString()}; secure}`;
+}
 
 /** 아코디언 버튼 이벤트 핸들러 */
 function accordion_button_handler() {
@@ -78,6 +136,10 @@ function accordion_button_handler() {
                 text: '잠시 후 다시 이용해주세요.',
             })
             // console.log("댓글쓰레드 요청 실패");
+            this.ariaChecked = "false";
+            this.addClass("collapsed");
+            this.parent().next().removeClass("show");
+
         }).done(function (data) {
         });
     }

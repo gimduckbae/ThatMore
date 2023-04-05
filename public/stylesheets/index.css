@@ -8,13 +8,14 @@ body {
     padding-left: 30px;
 }
 
-#buttons {
+.container {
+    width: 80vw;
+}
+
+.input-group {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 0 auto;
-    width: 80%;
+    flex-direction: row;
+    width: 100%;
 }
 
 .accordion-collapse {
@@ -104,4 +105,36 @@ body {
     --bs-btn-disabled-color: #fff;
     --bs-btn-disabled-bg: #212529;
     --bs-btn-disabled-border-color: #212529;
+}
+
+.footer-text {
+    width: 50%;
+    font-size: 12px;
+}
+
+.footer-icon {
+    width: 50%;
+}
+
+.swal2-close {
+    z-index: 2;
+    align-items: center;
+    justify-content: center;
+    width: 5em;
+    height: 3em;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: -1.2em;
+    padding: 0;
+    overflow: hidden;
+    transition: color .1s,box-shadow .1s;
+    border: none;
+    border-radius: 5px;
+    background: rgba(0,0,0,0);
+    color: #ccc;
+    font-family: serif;
+    font-family: monospace;
+    font-size: 1em;
+    cursor: pointer;
+    justify-self: end;
 }

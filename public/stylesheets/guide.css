@@ -59,20 +59,37 @@ body {
 .title {
     margin: 0 auto;
     width: 100%;
-    margin-top: 10vh;
-    margin-bottom: 10vh;
+    margin-top: 8vh;
+    margin-bottom: 14vh;
 }
 
 .page_title {
-    font-size: 5vmin;
+    font-size: 5vw;
+    /* 모바일은 8 */
     font-weight: lighter;
     color: #fff;
-    text-align: left;
+    text-align: center;
     transform: rotate(0.04deg);
 }
 
 .last_text {
     font-weight: bold;
+}
+
+.info {
+    margin-top: 12vh;
+    margin-bottom: 8vh;
+    color: #fff;
+    text-align: center;
+    transform: rotate(0.04deg);
+}
+
+.my_font2 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: lighter;
+    color: #fff;
+    font-size: 2vw;
+    /* 모바일은4 */
 }
 
 .btn_scroll {

@@ -1,29 +1,133 @@
+html {
+    font-size: 100%;
+}
+
+@media screen and (min-width: 1200px) {
+
+    /* 데스크탑 */
+    html {
+        font-size: 112.5%;
+    }
+
+    .pc_card {
+        display: block;
+    }
+
+    .mobile_card {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    /* 네비바 확장 버전 */
+    .navbar-brand {
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 1199px) {
+
+    /* 태블릿 디바이스 */
+    html {
+        font-size: 100%;
+    }
+
+    .pc_card {
+        display: none;
+    }
+
+    .mobile_card {
+        display: block;
+    }
+}
+
+
+
+@media screen and (max-width: 991px) {
+    /* 네비바 단축 버전 */
+    .navbar-brand {
+        padding-right: 1rem;
+        padding-bottom: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    /* 모바일 디바이스 X */
+    html {
+        font-size: 87.5%;
+    }
+
+    .pc_card {
+        display: none;
+    }
+
+    .mobile_card {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 540px) {
+
+    /* 가장 작은 디바이스 */
+    html {
+        font-size: 62.5%;
+    }
+
+    .pc_card {
+        display: none;
+    }
+
+    .mobile_card {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 280px) {
+
+    /* 갤럭시 폴드 */
+    html {
+        font-size: 56.3%;
+    }
+
+    .pc_card {
+        display: none;
+    }
+
+    .mobile_card {
+        display: block;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: #112D4E;
 }
 
-.navbar {
+nav {
     background-color: #3F72AF;
-    padding-top: 16px;
-    padding-left: 30px;
 }
 
 .my_card {
     margin: 0 auto;
-    margin-bottom: 10vh;
-    width: 100%;
+    margin-bottom: 5rem;
+    width: 90%;
     background-color: #3F72AF;
 }
 
-.mobile {
-    width: 100%;
-    height: 90vh;
+.card-img-top {
+    margin: 0 auto;
 }
 
 .my_font {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
     color: #fff;
+    font-size: 2rem;
 }
 
 .g_title {
@@ -41,31 +145,30 @@ body {
 
 .g_title_mobile {
     text-align: center;
-    font-size: 6vmin;
+    font-size: 2.5rem;
     transform: rotate(0.04deg);
 }
 
 .g_text_mobile {
     text-align: center;
     margin: 0;
-    font-size: 4vmin;
+    font-size: 1.5rem;
     transform: rotate(0.04deg);
 }
 
 .card-body {
-    padding: 4px 4px;
+    padding: 0;
 }
 
 .title {
     margin: 0 auto;
     width: 100%;
-    margin-top: 8vh;
-    margin-bottom: 14vh;
+    padding-top: 6rem;
+    padding-bottom: 8rem;
 }
 
 .page_title {
-    font-size: 5vw;
-    /* 모바일은 8 */
+    font-size: 3rem;
     font-weight: lighter;
     line-height: 1.5em;
     color: #fff;
@@ -75,51 +178,32 @@ body {
 
 .last_text {
     font-weight: bold;
+    font-size: 5em;
 }
 
 .info {
-    margin-top: 12vh;
-    margin-bottom: 8vh;
     color: #fff;
     text-align: center;
-    transform: rotate(0.04deg);
+    padding-bottom: 12rem;
 }
 
-.my_font2 {
+.info_font {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: lighter;
     color: #fff;
-    font-size: 2vw;
-    /* 모바일은4 */
+    transform: rotate(0.04deg);
+    font-size: 1.5rem;
 }
 
-.btn_scroll {
-    width: 80px;
-    position: fixed;
-    top: 10vh;
-    right: 3vw;
-    z-index: 999;
-    font-size: 18px;
-    border: none;
-    outline: none;
-    color: white;
-    cursor: pointer;
-    border-radius: 4px;
+.info_last {
+    font-size: 2rem;
 }
 
-.btn-dark {
-    --bs-btn-color: #fff;
-    --bs-btn-bg: #212529;
-    --bs-btn-border-color: #212529;
-    --bs-btn-hover-color: #fff;
-    --bs-btn-hover-bg: #212529;
-    --bs-btn-hover-border-color: #212529;
-    --bs-btn-focus-shadow-rgb: 66, 70, 73;
-    --bs-btn-active-color: #fff;
-    --bs-btn-active-bg: #424649;
-    --bs-btn-active-border-color: #373b3e;
-    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --bs-btn-disabled-color: #fff;
-    --bs-btn-disabled-bg: #212529;
-    --bs-btn-disabled-border-color: #212529;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
 }

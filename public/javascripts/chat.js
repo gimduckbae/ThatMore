@@ -11,7 +11,7 @@ $(document).ready(function () {
     // 채팅 닉네임 설정
     function input_name() {
         Swal.fire({
-            title: '채팅 닉네임을 정해주세요.',
+            title: '닉네임을 정해주세요.',
             input: 'text',
             confirmButtonText: '드가자~',
         }).then((result) => {
@@ -27,7 +27,7 @@ $(document).ready(function () {
             }
             else if (result.value.length > 10) {
                 g_input_error_count++;
-                const alert_message = g_input_error_count >= 3 ? "너무 길어요. 10자 이내로!" : "다른 닉네임을 정해주세요.";
+                const alert_message = g_input_error_count >= 3 ? "너무 길어요. 10자 이내로!" : "닉네임을 정해주세요.";
                 Swal.fire(alert_message).then((result) => {
                     input_name();
                 });

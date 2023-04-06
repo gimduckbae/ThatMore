@@ -1,21 +1,5 @@
 const g_apikey = "AIzaSyCAVuBoT61qOyselZeEQ6B3cDU-zJIKBPc"; // 우리집 가보
 $(document).ready(function () {
-    // 모바일 체크
-    const md = new MobileDetect(navigator.userAgent);
-
-    if (md.mobile() == null) {
-        // PC 환경
-    } else {
-        // 모바일 환경 css
-        $('#search-url-input').css("font-size", "3.5vw");
-        $('#search-button').css("font-size", "3.5vw");
-        $('#search_btn_drop').css("width", "20vw");
-        $('#search_btn_drop').css("font-size", "3.5vw");
-        $('#search_btn_drop').css("padding", "0");
-        $('.footer-text').find('span').css("margin-top", "16px");
-    }
-
-
     // 검색버튼
     $("#search-button").click(function () {
         $("#accordionFlushExample").empty(); // 기존에 있던 동영상 리스트 삭제
@@ -314,8 +298,8 @@ function add_video_list_to_html(video_list_XHR) {
         <h2 class="accordion-header" id="flush-heading${videoId}">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                 data-bs-target="#flush-collapse${videoId}" aria-expanded="false" aria-checked="false" aria-controls="flush-collapse${videoId}" aria-label="${videoId}">
-                <img src="${videoThumbnail}" class="rounded float-start"
-                    alt="..." style="width: 20%;">
+                <img src="${videoThumbnail}" class="rounded float-start thumbnail-img"
+                    alt="...">
                 <p class="lead" style="margin: 0 auto;">${videoTitle}</p>
             </button>
         </h2>

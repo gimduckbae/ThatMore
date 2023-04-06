@@ -1,21 +1,151 @@
+html {
+    font-size: 100%;
+}
+
+@media screen and (min-width: 1200px) {
+
+    /* 데스크탑 */
+    html {
+        font-size: 112.5%;
+    }
+
+    .pc_card {
+        display: block;
+    }
+
+    .mobile_card {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1199px) {
+
+    /* 태블릿 디바이스 */
+    html {
+        font-size: 100%;
+    }
+
+    .pc_card {
+        display: none;
+    }
+
+    .mobile_card {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 992px) {
+
+    /* 네비바 확장 버전 */
+    .navbar-brand {
+        padding: 0;
+    }
+
+    html {
+        font-size: 93.8%;
+    }
+}
+
+@media screen and (max-width: 991px) {
+
+    /* 네비바 단축 버전 */
+    .navbar-brand {
+        padding-right: 1rem;
+        padding-bottom: 0.5rem;
+    }
+
+    html {
+        font-size: 87.5%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    /* 모바일 디바이스 X */
+    html {
+        font-size: 75%;
+    }
+
+    .pc_card {
+        display: none;
+    }
+
+    .mobile_card {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 540px) {
+
+    /* 가장 작은 디바이스 */
+    html {
+        font-size: 62.5%;
+    }
+
+    .pc_card {
+        display: none;
+    }
+
+    .mobile_card {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 375px) {
+
+    /* 갤럭시 폴드 */
+    html {
+        font-size: 56.3%;
+    }
+
+    .pc_card {
+        display: none;
+    }
+
+    .mobile_card {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 280px) {
+
+    /* 갤럭시 폴드 */
+    html {
+        font-size: 37.5%;
+    }
+
+    .pc_card {
+        display: none;
+    }
+
+    .mobile_card {
+        display: block;
+    }
+}
+
 body {
     background-color: #112D4E;
 }
 
-.navbar {
+nav {
     background-color: #3F72AF;
-    padding-top: 16px;
-    padding-left: 30px;
 }
 
 .container {
-    width: 80vw;
+    width: 40rem;
 }
 
 .input-group {
     display: flex;
     flex-direction: row;
     width: 100%;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.input-group button,
+.input-group input {
+    font-size: 1.5rem;
 }
 
 .accordion-collapse {
@@ -25,7 +155,7 @@ body {
 
 .main-box {
     width: 100%;
-    height: 60vh;
+    height: 38rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,7 +164,7 @@ body {
 
 .spinner-box {
     width: 100%;
-    height: 60vh;
+    height: 38rem;
     display: none;
     justify-content: center;
     align-items: center;
@@ -45,15 +175,16 @@ body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
     color: #fff;
+    font-size: 2rem;
 }
 
 #page-title {
-    font-size: 12vmin;
+    font-size: 8rem;
     transform: rotate(0.04deg);
 }
 
 #page-comment {
-    font-size: 3vmin;
+    font-size: 1.5rem;
     transform: rotate(0.04deg);
 }
 
@@ -65,29 +196,44 @@ body {
     margin-left: 0;
 }
 
-#accordionFlushExample {
-    padding-top: 10vh;
-    padding-bottom: 10vh;
+.accordion-button {
+    padding: 0;
+}
+
+.accordion-body a,
+.fw-bold {
+    font-size: 1.5rem;
 }
 
 .lead {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
     color: black;
+    font-size: 1.5rem;
+    padding: 1.5rem;
+}
+
+.thumbnail-img {
+    width: 33.3%;
 }
 
 .btn_scroll {
-    width: 80px;
+    width: 4rem;
     position: fixed;
-    top: 10vh;
-    right: 3vw;
+    top: 4.5rem;
+    right: 0.5rem;
     z-index: 999;
-    font-size: 18px;
     border: none;
     outline: none;
     color: white;
     cursor: pointer;
     border-radius: 4px;
+}
+
+#btn_top,
+#btn_down {
+    padding: 0.3rem;
+    font-size: 0.7rem;
 }
 
 .btn-dark {
@@ -107,9 +253,14 @@ body {
     --bs-btn-disabled-border-color: #212529;
 }
 
+.foot {
+    bottom: 0;
+    padding-top: 10rem;
+}
+
 .footer-text {
     width: 50%;
-    font-size: 12px;
+    font-size: 1rem;
 }
 
 .footer-icon {
@@ -117,7 +268,7 @@ body {
 }
 
 #popup-title {
-    font-size: 0.7em;
+    font-size: 1em;
     font-weight: bold;
     line-height: 1.5em;
 }
@@ -127,7 +278,7 @@ body {
     top: 0;
     right: 0;
     width: 100%;
-    height: 6%;
+    height: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -141,28 +292,37 @@ body {
 
 #label-close-check {
     position: absolute;
-    top: 1em;
-    left: 1em;
+    top: 0.5rem;
+    left: 0.5rem;
     transform: none;
-    font-size: 0.8em;
+    font-size: 0.8rem;
 }
 
 #label-close-btn {
     position: absolute;
     top: 0;
-    right: 0.5em;
-    font-size: 1.6em;
+    right: 0.5rem;
+    font-size: 1.6rem;
 }
 
 #label-close-btn:hover {
     color: #f27474;
 }
 
-#label-close-btn > input {
+#label-close-btn>input {
     position: absolute;
     padding: 0;
 }
 
 #label-close-check:hover {
     color: #f27474;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
 }

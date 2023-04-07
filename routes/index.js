@@ -28,7 +28,6 @@ router.get('/api/getchannel/:name', function (req, res) {
 module.exports = router;
 
 
-
 /* 검색어로 채널ID 가져오는 함수 **/
 function get_channelId_by_name(searchName, callback) {
   const options = {

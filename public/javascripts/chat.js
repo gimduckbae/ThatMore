@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    // 디버깅용 쿠키삭제
+    // document.cookie = "c_visit_check=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
     const socket = io();
     const chatForm = document.getElementById('chat-form');
     const chatBox = document.getElementById('messages');
@@ -11,23 +14,23 @@ $(document).ready(function () {
     // 채팅 닉네임 설정
     function input_name() {
         Swal.fire({
-            title: '닉네임을 정해주세요.',
+            title: '<div style="font-size: x-large;">닉네임을 정해주세요.</div>',
             input: 'text',
-            confirmButtonText: '드가자~',
+            confirmButtonText: '<div style="font-size: large;">드가자~</div>',
         }).then((result) => {
             const is_empty = result.value == null || result.value == "";
             const is_confirm = result.isConfirmed;
 
             if (is_empty) {
                 g_input_error_count++;
-                const alert_message = g_input_error_count >= 3 ? "설마 글씨를 못 읽는건 아니죠?" : "닉네임을 정해주세요.";
+                const alert_message = g_input_error_count >= 3 ? `<div style="font-size: x-large;">설마 글씨를 못 읽는건 아니죠?</div>` : `<div style="font-size: x-large;">닉네임을 정해주세요.</div>`;
                 Swal.fire(alert_message).then((result) => {
                     input_name();
                 });
             }
             else if (result.value.length > 10) {
                 g_input_error_count++;
-                const alert_message = g_input_error_count >= 3 ? "너무 길어요. 10자 이내로!" : "닉네임을 정해주세요.";
+                const alert_message = g_input_error_count >= 3 ? `<div style="font-size: x-large;">너무 길어요!</div>` : `<div style="font-size: x-large;">닉네임을 정해주세요.</div>`;
                 Swal.fire(alert_message).then((result) => {
                     input_name();
                 });
@@ -46,10 +49,10 @@ $(document).ready(function () {
             title: '쿠팡 방문하고 채팅하기',
             text: '이 팝업은 쿠팡 파트너스 활동으로, 일정액의 수수료를 제공받을 수 있습니다.',
             icon: 'warning',
-            footer: '<div style="text-align: center; font-size: 0.8em;"><strong>이 경고는 결제 유도가 아닙니다!</strong><br>클릭 한번으로 That More 운영에 큰 힘이 됩니다.</div>',
-            confirmButtonText: '까짓거 해줄게!',
+            footer: '<div style="text-align: center; font-size: smaller;"><strong>이 경고는 결제 유도가 아닙니다!</strong><br>클릭 한번으로 That More 운영에 큰 힘이 됩니다.</div>',
+            confirmButtonText: '<div style="font-size: larger;">까짓거 해줄게!</div>',
             showCancelButton: true,
-            cancelButtonText: '내가 왜 함?'
+            cancelButtonText: '<div style="font-size: larger;">내가 왜 함?</div>'
         }).then((result) => {
             if (result.isConfirmed) {
                 if (coopang_check()) {
@@ -113,15 +116,15 @@ $(document).ready(function () {
         if (!isOthers) { // 내 메세지면 닉네임 출력 X
             msgBox.innerHTML = `
             <div class="my-message-box">
-                <span>${message.text}</span>
+                <span style="font-size: medium;">${message.text}</span>
             </div>
             `;
         }
         else { // 다른사람 메세지면 닉네임 출력 O
             msgBox.innerHTML = `
-            <span class="others-nickname">${message.name}</span>
+            <span class="others-nickname" style="font-size: large; font-weight: bold;">${message.name}</span>
             <div class="others-message-box">
-                <span>${message.text}</span>
+                <span style="font-size: medium;">${message.text}</span>
             </div>
                 
             `;

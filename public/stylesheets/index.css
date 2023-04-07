@@ -128,24 +128,35 @@ body {
 }
 
 nav {
+    padding-top: 2vh !important;
+    padding-bottom: 2vh !important;
     background-color: #3F72AF;
 }
 
+.nav_font {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    color: #fff;
+    font-size: x-large;
+}
+
 .container {
-    width: 40rem;
+    width: 100vw;
 }
 
 .input-group {
     display: flex;
     flex-direction: row;
-    width: 100%;
+    margin: 0 auto;
+    width: 80%;
     padding-top: 5rem;
     padding-bottom: 5rem;
 }
 
 .input-group button,
 .input-group input {
-    font-size: 1.5rem;
+    /* font-size: 1.2rem; */
+    font-size: medium;
 }
 
 .accordion-collapse {
@@ -155,7 +166,7 @@ nav {
 
 .main-box {
     width: 100%;
-    height: 38rem;
+    height: 50vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -178,13 +189,18 @@ nav {
     font-size: 2rem;
 }
 
+.text-black-50 {
+    font-size: 8vmax;
+}
+
 #page-title {
-    font-size: 8rem;
+    font-size: 7vmax;
     transform: rotate(0.04deg);
 }
 
 #page-comment {
-    font-size: 1.5rem;
+    font-size: 2vmax;
+    padding-top: 2vh;
     transform: rotate(0.04deg);
 }
 
@@ -202,14 +218,21 @@ nav {
 
 .accordion-body a,
 .fw-bold {
-    font-size: 1.5rem;
+    /* font-size: 1.5rem; */
+    font-size: large;
+}
+
+.comment-text {
+    /* font-size: 1.2rem; */
+    font-size: medium;
 }
 
 .lead {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
     color: black;
-    font-size: 1.5rem;
+    /* font-size: 1.5rem; */
+    font-size: large;
     padding: 1.5rem;
 }
 
@@ -218,9 +241,9 @@ nav {
 }
 
 .btn_scroll {
-    width: 4rem;
+    width: 6rem;
     position: fixed;
-    top: 4.5rem;
+    bottom: 50vh;
     right: 0.5rem;
     z-index: 999;
     border: none;
@@ -232,8 +255,16 @@ nav {
 
 #btn_top,
 #btn_down {
-    padding: 0.3rem;
-    font-size: 0.7rem;
+    padding: 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border: 1px solid #ddd;
+}
+
+#btn_top:hover,
+#btn_down:hover {
+    background-color: #ddd;
+    color: #000;
 }
 
 .btn-dark {
@@ -255,7 +286,7 @@ nav {
 
 .foot {
     bottom: 0;
-    padding-top: 10rem;
+    padding-top: 10vmax;
 }
 
 .footer-text {

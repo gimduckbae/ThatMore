@@ -139,19 +139,28 @@ body {
 }
 
 nav {
+  padding-top: 2vh !important;
+  padding-bottom: 2vh !important;
   background-color: #3F72AF;
-  margin-bottom: 10rem;
+}
+
+.nav_font {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+  color: #fff;
+  font-size: x-large;
 }
 
 .container {
-  width: 30rem;
+  width: 100vw;
   margin: 0 auto;
+  padding-top: 10vh;
 }
 
 .chat-box {
   border: #eee solid 1px;
   position: relative;
-  width: 100%;
+  width: 80vw;
   height: 70vh;
   margin: 0 auto;
   border-radius: 5px;
@@ -171,7 +180,7 @@ form input {
   padding: 10px;
   width: 85%;
   height: 100%;
-  font-size: 1rem;
+  font-size: large;
   background-color: transparent;
   box-sizing: border-box;
 }
@@ -187,6 +196,7 @@ form button {
   background: #ffd600;
   border: none;
   padding: 0;
+  font-size: large;
 }
 
 #messages {
@@ -211,7 +221,7 @@ button {
   align-items: flex-start;
   border-radius: 5px;
   padding: 3px 5px;
-  margin: 5px auto 5px 15px;
+  margin: 1px auto 1px 15px;
   word-break: break-all;
 }
 
@@ -238,7 +248,7 @@ button {
   align-items: flex-end;
   border-radius: 5px;
   padding: 3px 5px;
-  margin: 5px 15px 5px auto;
+  margin: 1px 15px 1px auto;
   word-break: break-all;
 }
 
@@ -253,7 +263,16 @@ button {
 
 .foot {
   bottom: 0;
-  padding-top: 10rem;
+  padding-top: 10vmax;
+}
+
+.footer-text {
+  width: 50%;
+  font-size: 1rem;
+}
+
+.footer-icon {
+  width: 50%;
 }
 
 h1,

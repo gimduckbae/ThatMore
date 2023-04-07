@@ -8,7 +8,7 @@ $(document).ready(function () {
         // css 대기
         setTimeout(function () {
             search_button_handler();
-        }, 10);
+        }, 50);
     });
 
 
@@ -21,7 +21,7 @@ $(document).ready(function () {
             // css 대기
             setTimeout(function () {
                 search_button_handler();
-            }, 10);
+            }, 50);
         }
     });
 
@@ -69,7 +69,7 @@ $(document).ready(function () {
     // 검색 input 포커스 핸들러
     $("#search-url-input").focus(function () {
         if ($('#search_btn_drop').text() == '채널명') {
-            $('#search-url-input').attr('placeholder', `' 조코딩' 검색!`);
+            $('#search-url-input').attr('placeholder', ` ' 조코딩 ' 검색!`);
         }
     });
 
@@ -90,8 +90,13 @@ function close_swal(bool) {
         const date = new Date();
         date.setHours(date.getHours() + 24);
         document.cookie = `p_visit_check=true; expires=${date.toUTCString()}; secure}`;
+    } else {
+        Swal.close();
+        const date = new Date();
+        date.setMinutes(date.getMinutes() + 1);
+        document.cookie = `p_visit_check=true; expires=${date.toUTCString()}; secure}`;
+        $("#search-url-input").focus();
     }
-    Swal.close();
 }
 
 // 팝업창 띄우기
@@ -362,9 +367,8 @@ function add_comment_to_html(commentThreads_XHR, jqElement) {
                 alt="..." />
         </div>
         <div>
-            <div class="fw-bold">${authorDisplayName} <span class="badge rounded-pill bg-danger">🤍 ${likeCount}</span>
-            </div>
-            ${comment}
+            <div class="fw-bold">${authorDisplayName} <span class="badge rounded-pill bg-danger">🤍 ${likeCount}</span></div>
+            <span class="comment-text">${comment}</span>
         </div>
     </div>
         `

@@ -19,6 +19,7 @@ html {
 }
 
 @media screen and (min-width: 992px) {
+
     /* 네비바 확장 버전 */
     .navbar-brand {
         padding: 0;
@@ -44,6 +45,7 @@ html {
 
 
 @media screen and (max-width: 991px) {
+
     /* 네비바 단축 버전 */
     .navbar-brand {
         padding-right: 1rem;
@@ -109,13 +111,26 @@ body {
 }
 
 nav {
+    padding-top: 2vh !important;
+    padding-bottom: 2vh !important;
     background-color: #3F72AF;
+}
+
+.nav_font {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    color: #fff;
+    font-size: x-large;
+}
+
+.container {
+    width: 100vw;
 }
 
 .my_card {
     margin: 0 auto;
-    margin-bottom: 5rem;
-    width: 90%;
+    margin-bottom: 10vh;
+    width: 80%;
     background-color: #3F72AF;
 }
 
@@ -132,27 +147,27 @@ nav {
 
 .g_title {
     text-align: center;
-    font-size: 5vmin;
+    font-size: 3vw;
     transform: rotate(0.04deg);
 }
 
 .g_text {
     text-align: center;
     margin: 0;
-    font-size: 2vmin;
+    font-size: 1.5vw;
     transform: rotate(0.04deg);
 }
 
 .g_title_mobile {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 4vmax;
     transform: rotate(0.04deg);
 }
 
 .g_text_mobile {
     text-align: center;
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 2vmax;
     transform: rotate(0.04deg);
 }
 
@@ -162,13 +177,13 @@ nav {
 
 .title {
     margin: 0 auto;
-    width: 100%;
-    padding-top: 6rem;
-    padding-bottom: 8rem;
+    width: 80%;
+    padding-top: 12vmin;
+    padding-bottom: 15vmin;
 }
 
 .page_title {
-    font-size: 3rem;
+    font-size: 5vmax;
     font-weight: lighter;
     line-height: 1.5em;
     color: #fff;
@@ -178,13 +193,15 @@ nav {
 
 .last_text {
     font-weight: bold;
-    font-size: 5em;
+    font-size: 7vmax;
 }
 
 .info {
+    width: 80%;
+    margin: 0 auto;
     color: #fff;
     text-align: center;
-    padding-bottom: 12rem;
+    padding-bottom: 20vh;
 }
 
 .info_font {
@@ -192,11 +209,25 @@ nav {
     font-weight: lighter;
     color: #fff;
     transform: rotate(0.04deg);
-    font-size: 1.5rem;
+    font-size: 2.5vmax;
 }
 
 .info_last {
-    font-size: 2rem;
+    font-size: 5vmax;
+}
+
+.foot {
+    bottom: 0;
+    padding-top: 10vmax;
+}
+
+.footer-text {
+    width: 50%;
+    font-size: 1rem;
+}
+
+.footer-icon {
+    width: 50%;
 }
 
 h1,

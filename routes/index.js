@@ -1,11 +1,16 @@
 var express = require('express');
 const request = require('request');
 var router = express.Router();
+var path = require('path');
+var __dirname = path.resolve();
+
+router.use(express.static(path.join(__dirname, 'public'),{index:false,extensions:['html']}));
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'That More' });
 });
+
 
 
 /* API 이름 -> 채널ID */

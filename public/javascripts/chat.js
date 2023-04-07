@@ -133,13 +133,6 @@ $(document).ready(function () {
     }
 
 
-    // 모바일 체크
-    const md = new MobileDetect(navigator.userAgent);
-    if (md.mobile() == null) {
-        // 모바일 채팅 전송시 스크롤 문제 있음
-    }
-
-
     // 쿠팡 체크
     function coopang_check() {
         if (document.cookie.indexOf('c_visit_check') != -1) { // 쿠키 있으면 true

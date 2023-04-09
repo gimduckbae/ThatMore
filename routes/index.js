@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
 
 
 
-/* API 이름 -> 채널ID */
+/* 채널이름 -> 채널ID로 가져오는 API */
 router.get('/api/getchannel/:name', function (req, res) {
   let _name = req.params.name;
 
@@ -47,7 +47,7 @@ function get_channelId_by_name(searchName, callback) {
   request(options, function (error, response, body) {
     try {
       let var1 = body.split('browseId":"');
-      let var2 = var1[3].split('"'); // 유튜브 광고 채널때문에 3번째 인덱스가 보통 잘잡히는듯
+      let var2 = var1[3].split('"'); // 유튜브 광고 채널 거르기 (3번째 인덱스부터)
       const result = var2[0];
       callback(result);
     } catch (error) {

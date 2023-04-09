@@ -72,7 +72,7 @@ $(document).ready(function () {
         e.preventDefault();
         const message = e.target.m.value
 
-        if (coopang_check() == false) { // 쿠팡 쿠키가 없으면 광고 팝업 << 따로 함수로 빼도 되는데 구찮아서 그냥 여기에
+        if (coopang_check() == false) { // 쿠팡 쿠키가 없으면 광고 팝업
             coopang_popup();
             return;
         }
@@ -142,5 +142,3 @@ $(document).ready(function () {
         }
     }
 });
-
-

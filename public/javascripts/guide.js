@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     // Top 스크롤 버튼
     $("#btn_top").click(function () {
         $('html, body').animate({

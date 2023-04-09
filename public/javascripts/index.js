@@ -295,8 +295,6 @@ function add_video_list_to_html(video_list_XHR) {
         const videoId = video_list[i].contentDetails.videoId;
         const videoTitle = video_list[i].snippet.title;
         const videoThumbnail = video_list[i].snippet.thumbnails.medium.url;
-        const videoPublishedAt = video_list[i].snippet.publishedAt;
-        const videoDescription = video_list[i].snippet.description;
         const videoURL = `https://www.youtube.com/watch?v=${videoId}`;
         const videoHTML = `
         <div class="accordion-item">

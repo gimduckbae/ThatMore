@@ -112,7 +112,7 @@ function popup_swal() {
         }, 10);
 
         Swal.fire({
-            title: '<div id="popup-title">사용법이 궁금하다면,<br><b><a href="guide.html" target="_blank">가이드</a></b>를 확인해보세요.</div>',
+            title: '<div id="popup-title">사용법이 궁금하다면,<br><b><a href="/guide" target="_blank">가이드</a></b>를 확인해보세요.</div>',
             icon: 'info',
             showConfirmButton: false,
             html:
